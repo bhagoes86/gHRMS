@@ -1,0 +1,46 @@
+<?php  
+	if (empty($data_user)) { 
+		$id = '';
+		$username = '';
+		$password = '';
+		$roles_id = '';
+		$type = 'create';   
+	} else {  
+		$id = $data_user->id;
+		$username = $data_user->username;
+		$password = $data_user->password;
+		$roles_id = $data_user->roles_id;
+		$type = 'update';  
+	}  
+?>  
+<?php echo display_flash('message') ?>
+<?php echo form_open('user/'.$type,array('class'=>'form-horizontal')); ?>
+<?php echo form_hidden('id', $id); ?>
+	<fieldset>
+		<legend>Edit User</legend>
+		<div class="control-group">
+			<label class="control-label" for="input01">Username</label>
+			<div class="controls">
+				<?php echo form_input(array('name'=>'username', 'value'=>$username, 'class'=>'input-xlarge')); ?>
+				<p class="help-block"><?php echo form_error('user'); ?></p>
+			</div>
+		<div class="control-group">
+			<label class="control-label" for="input01">Password</label>
+			<div class="controls">
+				<?php echo form_input(array('name'=>'password', 'value'=>$password, 'class'=>'input-xlarge')); ?>
+				<p class="help-block"><?php echo form_error('user'); ?></p>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="input01">Roles</label>
+			<div class="controls">
+				<?php echo form_input(array('name'=>'roles_id', 'value'=>$roles_id, 'class'=>'input-xlarge')); ?>
+				<p class="help-block"><?php echo form_error('user'); ?></p>
+			</div>
+		</div>
+		<div class="form-actions">
+			<?php echo form_submit(array('name'=>'submit', 'value'=>'Save changes', 'class'=>'btn btn-primary')); ?>
+			<button class="btn">Cancel</button>
+		</div>
+	</fieldset>
+<?php echo form_close(); ?>

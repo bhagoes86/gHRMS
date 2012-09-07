@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array();
+$autoload['libraries'] = array('database','session', 'form_validation');
 
 
 /*
@@ -64,7 +64,11 @@ $autoload['libraries'] = array();
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array();
+global $template;
+// rubah nama template disini om
+$template = "hrms";
+
+$autoload['helper'] = array('url','gopang_template','hrms','login','flash','form_dropdown_data');
 
 
 /*
