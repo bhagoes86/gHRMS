@@ -7,6 +7,7 @@
 		$npwp = '';
 		$tempat_lahir = '';
 		$tanggal_lahir = '';
+		$sex = '';
 		$no_telp = '';
 		$email = '';
 		$alamat = '';
@@ -28,6 +29,7 @@
 		$npwp = $data_karyawan->npwp;
 		$tempat_lahir = $data_karyawan->tempat_lahir;
 		$tanggal_lahir = $data_karyawan->tanggal_lahir;
+		$sex = $data_karyawan->sex;
 		$no_telp = $data_karyawan->no_telp;
 		$email = $data_karyawan->email;
 		$alamat = $data_karyawan->alamat;
@@ -88,6 +90,18 @@
 			<div class="controls">
 				<?php echo form_input(array('name'=>'tanggal_lahir', 'value'=>$tanggal_lahir, 'class'=>'input-medium datepicker')); ?>
 				<p class="help-inline error"><?php echo form_error('tanggal_lahir'); ?></p>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="textarea">Jenis Kelamin</label>
+			<div class="controls">
+				<label class="radio inline">
+					<input type="radio" name="sex" value="l" <?php echo ($sex == 'l') ? 'checked' : '' ?>> Laki-Laki
+				</label>
+				<label class="radio inline">
+					<input type="radio" name="sex" value="p" <?php echo ($sex == 'p') ? 'checked' : '' ?>> Perempuan
+				</label>
+				<p class="help-inline error"><?php echo form_error('sex'); ?></p>
 			</div>
 		</div>
 		<div class="control-group">

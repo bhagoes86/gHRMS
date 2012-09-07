@@ -138,6 +138,30 @@ INSERT INTO `jabatan` VALUES (1,'General Manager'),(2,'Manager'),(3,'Supervisor'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `jenis_cuti`
+--
+
+DROP TABLE IF EXISTS `jenis_cuti`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `jenis_cuti` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_cuti` varchar(35) DEFAULT NULL,
+  `jumlah_hari` int(2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jenis_cuti`
+--
+
+LOCK TABLES `jenis_cuti` WRITE;
+/*!40000 ALTER TABLE `jenis_cuti` DISABLE KEYS */;
+/*!40000 ALTER TABLE `jenis_cuti` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `karyawan`
 --
 
@@ -170,7 +194,7 @@ CREATE TABLE `karyawan` (
   `join_date` datetime DEFAULT NULL,
   `terminate_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,7 +203,7 @@ CREATE TABLE `karyawan` (
 
 LOCK TABLES `karyawan` WRITE;
 /*!40000 ALTER TABLE `karyawan` DISABLE KEYS */;
-INSERT INTO `karyawan` VALUES (6,'12345','Bagusnov','Eka',NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,3,2,1,1,2,NULL,NULL,NULL,1,NULL,NULL,NULL),(7,'2345345','Maria','Ozawa',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,2,4,2,1,3,NULL,NULL,NULL,1,NULL,NULL,NULL);
+INSERT INTO `karyawan` VALUES (6,'12345','Bagusnov','Eka','','','0000-00-00','','','',NULL,2,3,2,1,1,2,'O','','',1,0,NULL,NULL),(7,'2345345','Maria','Ozawa','','','0000-00-00','','','',NULL,1,2,4,2,1,3,'AB','','',1,0,NULL,NULL);
 /*!40000 ALTER TABLE `karyawan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -443,4 +467,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-09-07  6:53:38
+-- Dump completed on 2012-09-07  8:18:51
