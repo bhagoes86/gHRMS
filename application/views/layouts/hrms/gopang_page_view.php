@@ -89,7 +89,7 @@ $assets = base_url(). "application/views/layouts/" .$template. "/";
 								</ul>
 							</li>
 							<li><a href="#">Cuti</a></li>
-							<li><?php echo anchor('presensi/index', 'Absensi'); ?></li>
+							<li><?php echo anchor('presensi/index', 'Presensi'); ?></li>
 							<li><?php echo anchor('penggajian/index', 'Penggajian'); ?></li>
 						</ul>
 						<ul class="nav pull-right">
