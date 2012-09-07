@@ -76,7 +76,7 @@ class Jenis_cuti extends CI_Controller {
 	 		redirect('jenis_cuti');
 	 	} else { 
 	 		$delete = $this->jenis_cuti->delete_data($id);
-	 		if ($delete) set_flash('message', 'alert-success', 'Jenis cuti deleted', 'jenis_cuti');
+	 		if ($delete) set_flash('message', 'alert-success', 'Jenis cuti berhasil dihapus', 'jenis_cuti');
 	 		else set_flash('message', 'alert-error', 'Failed to delete data!', 'jenis_cuti');
 	 	}
 	 }
@@ -85,7 +85,7 @@ class Jenis_cuti extends CI_Controller {
 	 {
 	  	// setting konfigurasi form validation
 	 	$this->form_validation->set_error_delimiters('<div id="error">', '</div>');
-	 	$this->form_validation->set_rules('jenis_cuti', 'Jenis_cuti', 'trim|required|xss_clean');
+	 	$this->form_validation->set_rules('nama_cuti', 'nama_cuti', 'trim|required|xss_clean');
 
 	  	// jika tidak lolos validasi
 	 	if ($this->form_validation->run() == FALSE){
@@ -94,11 +94,12 @@ class Jenis_cuti extends CI_Controller {
 	  // jika lolos validasi
 	 	} else {
 	 		$data = array(
-	 			'nama_cuti' => $this->input->post('jenis_cuti')  
+	 			'nama_cuti' => $this->input->post('nama_cuti'), 
+	 			'jumlah_hari' => $this->input->post('jumlah_hari')  
 	 			);
 	 		$create = $this->jenis_cuti->newJenis_cuti($data);
 	   		// tampilkan information message
-	 		if ($create) set_flash('message', 'alert-success', 'Jenis cuti created', 'jenis_cuti');
+	 		if ($create) set_flash('message', 'alert-success', 'Jenis cuti berhasil ditambah', 'jenis_cuti');
 	 		else set_flash('message', 'alert-error', 'Failed to create data!', 'jenis_cuti');
 	 	}
 	 }
@@ -107,7 +108,7 @@ class Jenis_cuti extends CI_Controller {
 	 {
 	  	// setting konfigurasi form validation
 	 	$this->form_validation->set_error_delimiters('<div id="error">', '</div>');
-	 	$this->form_validation->set_rules('jenis_cuti', 'Jenis_cuti', 'trim|required|xss_clean');
+	 	$this->form_validation->set_rules('nama_cuti', 'nama_cuti', 'trim|required|xss_clean');
 	 
 
 	  	// jika tidak lolos validasi
@@ -118,11 +119,12 @@ class Jenis_cuti extends CI_Controller {
 	 	} else {
 	 		$id = $this->input->post('id');
 	 		$data = array(
-	 			'nama_cuti' => $this->input->post('jenis_cuti')
+	 			'nama_cuti' => $this->input->post('nama_cuti'),
+	 			'jumlah_hari' => $this->input->post('jumlah_hari')  
 	 			);
 	 		$update = $this->jenis_cuti->updateJenis_cuti($id,$data);
 	   		// tampilkan information message
-	 		if ($update) set_flash('message', 'alert-success', 'Jenis cuti updated', 'jenis_cuti');
+	 		if ($update) set_flash('message', 'alert-success', 'Jenis cuti berhasil diupdate', 'jenis_cuti');
 	 		else set_flash('message', 'alert-error', 'Failed to update data!', 'jenis_cuti');
 	 	}
 	 }
