@@ -12,6 +12,7 @@
 		$email = '';
 		$alamat = '';
 		$departemen_id = '';
+		$cabang_id = '';
 		$jabatan_id = '';
 		$pendidikan_id = '';
 		$agama_id = '';
@@ -34,6 +35,7 @@
 		$email = $data_karyawan->email;
 		$alamat = $data_karyawan->alamat;
 		$departemen_id = $data_karyawan->departemen_id;
+		$cabang_id = $data_karyawan->cabang_id;
 		$jabatan_id = $data_karyawan->jabatan_id;
 		$pendidikan_id = $data_karyawan->pendidikan_id;
 		$agama_id = $data_karyawan->agama_id;
@@ -133,7 +135,14 @@
 				<p class="help-inline error"><?php echo form_error('departemen_id'); ?></p>
 			</div>
 		</div>
-		<hr>
+		<div class="control-group">
+			<label class="control-label" for="textarea">Cabang</label>
+			<div class="controls">
+				<?php $cabang_list = form_dropdown_data(array('id','nama_cabang'), 'cabang') ?>
+				<?php echo form_dropdown('cabang_id', $cabang_list, $cabang_id); ?>
+				<p class="help-inline error"><?php echo form_error('cabang_id'); ?></p>
+			</div>
+		</div>
 		<div class="control-group">
 			<label class="control-label" for="textarea">Jabatan</label>
 			<div class="controls">
