@@ -16,6 +16,7 @@
 	<tr>
 		<th width="20px">No</th>
 		<th width="300px">Jabatan</th>
+		<th width="300px">Besar Tunjangan (Rp)</th>
 		<th width="100px">Action</th>
 	</tr>
 	<?php $count = (1+$this->uri->segment(3)); ?>
@@ -24,6 +25,7 @@
 		<tr>
 			<td><?php echo $count++; ?></td>
 			<td><?php echo $data['nama_jabatan'] ?></td>
+			<td><?php echo $data['tunjangan'] ?></td>
 			<td>
 				<?php echo anchor('jabatan/edit/'.$data['id'], 'Edit', array('class'=>"btn btn-mini")); ?>
 				<?php echo anchor('jabatan/delete/'.$data['id'], 'Delete', array('class'=>"btn btn-mini", 'onclick'=> "return confirm('Are you sure you want to delete?')")); ?>

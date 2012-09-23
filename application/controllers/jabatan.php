@@ -86,7 +86,8 @@ class jabatan extends CI_Controller {
       // jika lolos validasi
         } else {
             $data = array(
-                'nama_jabatan' => $this->input->post('jabatan')
+                'nama_jabatan' => $this->input->post('jabatan'),
+                'tunjangan' => $this->input->post('tunjangan')
                 );
             $create = $this->jabatan->newJabatan($data);
             // tampilkan information message
@@ -108,7 +109,8 @@ class jabatan extends CI_Controller {
         } else {
             $id = $this->input->post('id');
             $data = array(
-                'nama_jabatan' => $this->input->post('jabatan')
+                'nama_jabatan' => $this->input->post('jabatan'),
+                'tunjangan' => $this->input->post('tunjangan')
                 );
             $update = $this->jabatan->updateJabatan($id,$data);
             // tampilkan information message

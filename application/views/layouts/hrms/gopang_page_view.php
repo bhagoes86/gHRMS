@@ -91,7 +91,13 @@ $assets = base_url(). "application/views/layouts/" .$template. "/";
 							</li>
 							<li><a href="#">Cuti</a></li>
 							<li><?php echo anchor('presensi/index', 'Presensi'); ?></li>
-							<li><?php echo anchor('penggajian/index', 'Penggajian'); ?></li>
+							<li class="dropdown clearfix">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Penggajian<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><?php echo anchor('penggajian/index', 'List Gaji'); ?></li>
+									<li><?php echo anchor('penggajian/input_gaji', 'Input Gaji'); ?></li>
+								</ul>
+							</li>
 						</ul>
 						<ul class="nav pull-right">
 							<li class="divider-vertical"></li>

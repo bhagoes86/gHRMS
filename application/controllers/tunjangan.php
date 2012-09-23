@@ -85,8 +85,8 @@ class  tunjangan extends CI_Controller {
         // setting konfigurasi form validation
         $this->form_validation->set_error_delimiters('<div id="error">', '</div>');
         $this->form_validation->set_rules('tunjangan','tunjangan', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('jumlah','jumlah', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('status_id','status_id', 'trim|required|xss_clean');
+        // $this->form_validation->set_rules('jumlah','jumlah', 'trim|required|xss_clean');
+        // $this->form_validation->set_rules('status_id','status_id', 'trim|required|xss_clean');
         // jika tidak lolos validasi
         if ($this->form_validation->run() == FALSE){
             $this->index();

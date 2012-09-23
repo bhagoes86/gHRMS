@@ -15,7 +15,7 @@ class Jabatan_model extends CI_Model {
 
 	public function listJabatan($limit = array())
 	{
-		$this->db->select('id,nama_jabatan');
+		$this->db->select('id,nama_jabatan, tunjangan');
 		if ($limit == null) {
 			$query = $this->db->get($this->table_name);
 		} else {
