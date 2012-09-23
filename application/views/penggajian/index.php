@@ -2,9 +2,13 @@
 <hr>
 <?php echo display_flash('message') ?>
 <div class="addition">
-	<form class="form-inline">
-		<input name="search" class="input-xlarge" type="text" placeholder="Search">
-	 	<select name="month" class="input-medium">
+	<form id="search_gaji" class="form-inline" method="post">
+		<input name="search" class="input-large" type="text" placeholder="Search">
+		<select name="by" class='input-medium'>
+			<option value="nik">NIK</option>
+			<option value="nama">Nama Depan</option>
+		</select>
+	 	<select name="month" class="input-small">
 	 		<option value="1">Januari</option>
 	 		<option value="2">Pebruari</option>
 	 		<option value="3">Maret</option>
@@ -18,7 +22,7 @@
 	 		<option value="11">November</option>
 	 		<option value="12">Desember</option>
 	 	</select>
-	 	<select name="year" class="input-medium">
+	 	<select name="year" class="input-mini">
 	 		<option value="2012">2012</option>
 	 		<option value="2011">2011</option>
 	 		<option value="2010">2010</option>
@@ -63,7 +67,8 @@
 				alert("Tidak ada data gaji yang dipilih.");
 			else
 				window.location = CI.base_url+"penggajian/print_gaji?items=" + selectedItems.join('|');
-		})
+		});
+
 		
 	});
 </script>

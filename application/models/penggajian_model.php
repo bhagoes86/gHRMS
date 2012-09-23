@@ -2,13 +2,19 @@
 
 class Penggajian_model extends CI_Model { 
 
-	public function getListGaji($month, $year) {
+	public function getListGaji($month, $year, $search, $by) {
 		$this->db->select('p.nik, p.id, k.nama_depan, k.nama_belakang,pd.total_gaji, p.tgl_pengambilan');
+		if ($by == 'nik') {
+			$this->db->like('p.nik', $search);
+		} else {
+			$this->db->like('k.nama_depan', $search);
+		}
 		$this->db->where("MONTH(p.tgl_pengambilan)", $month);
 		$this->db->where("YEAR(p.tgl_pengambilan)", $year);
 		$this->db->join('karyawan k', 'k.nik = p.nik', 'left');
 		$this->db->join('penggajian_detail pd', 'pd.penggajian_id = p.id', 'left');
 		$query = $this->db->get('penggajian p');
+		// echo $this->db->last_query();
 
 		return $query->result_array();
 	}

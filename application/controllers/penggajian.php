@@ -18,15 +18,20 @@ class  Penggajian extends CI_Controller {
     }
 
     public function index() {
+        $search = $this->input->post('search');
+        $by = $this->input->post('by');
+        $month = $this->input->post('month');
+        $year = $this->input->post('year');
+
         $view = "penggajian/index";
         $monthNow = date("m");
         $yearNow = date('Y');
         $month = $this->input->post('month');
         $year = $this->input->post('year');
         if (!$month || !$year) {
-            $penggajian = $this->gaji->getListGaji($monthNow, $yearNow);
+            $penggajian = $this->gaji->getListGaji($monthNow, $yearNow, $search, $by);
         } else {
-            $penggajian = $this->gaji->getListGaji($month, $year);
+            $penggajian = $this->gaji->getListGaji($month, $year, $search, $by);
         }
         $data = array('penggajian'=>$penggajian);
         gview($view, $data);
