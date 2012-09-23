@@ -46,10 +46,24 @@
 			<td><?php echo $data['nama_depan'] ?> <?php echo $data['nama_belakang'] ?></td>
 			<td><?php echo $data['tgl_pengambilan'] ?></td>
 			<td><?php echo $data['total_gaji'] ?></td>
-			<td><input type="checkbox" value="" checked></td>
+			<td><input name="gaji[]" type="checkbox" value="<?php echo $data['id'] ?>" checked></td>
 		</tr>
 	<?php endforeach ?>
 </table>
 <div class="footer_table">
-	<div class="pull-right"><button class="btn btn-primary"><i class="icon-print icon-white"></i> Cetak</button></div>
+	<div class="pull-right"><button id="cetak" class="btn btn-primary"><i class="icon-print icon-white"></i> Cetak</button></div>
 </div>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		var CI = {'base_url':'<?php echo base_url() ?>'}
+		$("button#cetak").click(function(){
+			var selectedItems = new Array();
+			$("input[@name='gaji[]']:checked").each(function() {selectedItems.push($(this).val());});
+			if (selectedItems .length == 0) 
+				alert("Tidak ada data gaji yang dipilih.");
+			else
+				window.location = CI.base_url+"penggajian/print_gaji?items=" + selectedItems.join('|');
+		})
+		
+	});
+</script>

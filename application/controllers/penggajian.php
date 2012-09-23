@@ -5,8 +5,16 @@ class  Penggajian extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        // $this->check_isvalidated(); 
         $this->load->model('penggajian_model', 'gaji');
         $this->load->model('penggajian_model', 'gaji_detail');
+    }
+
+    public function check_isvalidated()
+    {
+        if (!$this->session->userdata('validated')) {
+            redirect('login');
+        }
     }
 
     public function index() {
@@ -22,6 +30,14 @@ class  Penggajian extends CI_Controller {
         }
         $data = array('penggajian'=>$penggajian);
         gview($view, $data);
+    }
+
+    public function print_gaji() {
+        $items = $this->input->get('items');
+        $ids = explode('|', $items);
+        $penggajian = $this->gaji->getListGajiById($ids);
+        $data = array('penggajian'=>$penggajian);
+        $this->load->view('penggajian/print_gaji', $data);
     }
 
     public function get_gaji() {

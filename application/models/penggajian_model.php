@@ -13,6 +13,16 @@ class Penggajian_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function getListGajiById($ids = array()) {
+		$this->db->select('p.nik, p.id, k.nama_depan, k.nama_belakang,pd.total_gaji, p.tgl_pengambilan');
+		$this->db->where_in('p.id', $ids);
+		$this->db->join('karyawan k', 'k.nik = p.nik', 'left');
+		$this->db->join('penggajian_detail pd', 'pd.penggajian_id = p.id', 'left');
+		$query = $this->db->get('penggajian p');
+
+		return $query->result_array();
+	}
+
 	public function getGaji($nik) {
 		$this->db->select('
 			karyawan.nik,
