@@ -89,7 +89,7 @@ $assets = base_url(). "application/views/layouts/" .$template. "/";
 									<li><a href="#">Report</a></li>
 								</ul>
 							</li>
-							<li><a href="#">Cuti</a></li>
+							<li><?php echo anchor('cuti/index', 'Cuti'); ?></li>
 							<li><?php echo anchor('presensi/index', 'Presensi'); ?></li>
 							<li class="dropdown clearfix">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Penggajian<b class="caret"></b></a>

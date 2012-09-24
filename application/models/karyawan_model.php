@@ -56,6 +56,28 @@ class Karyawan_Model extends CI_Model {
 	  	}  
 	}
 
+	public function getKaryawanByNik($nik)
+	{
+		$this->db->select('
+			karyawan.nik,
+			karyawan.nama_depan, 
+			karyawan.nama_belakang, 
+			karyawan.alamat, 
+			karyawan.gapok,
+			jabatan.nama_jabatan, 
+			jabatan.tunjangan as tunjangan_jabatan'
+		);		
+		$this->db->where('karyawan.nik',$nik);
+		$this->db->join('jabatan', 'jabatan.id = karyawan.jabatan_id', 'left');
+		$this->db->join('status', 'status.id = karyawan.status_id', 'left');
+		$query = $this->db->get('karyawan');
+		if ($query->num_rows() > 0) {
+			return $query->row();
+		} else {
+			return null;
+		}
+	}
+
 	public function updateKaryawan($id, $data) {
 		$this->db->where('id', $id);  
 		$this->db->update($this->table_name, $data);  
