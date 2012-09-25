@@ -19,6 +19,7 @@ class Presensi_model extends CI_Model {
 
 	public function check_in($nik, $hari_ini)    
 	{
+		date_default_timezone_set('Asia/Jakarta');
 		$masuk = $this->sudah_masuk($nik, $hari_ini);
 		if ($masuk) {
 			$this->keluar($nik, $hari_ini);
