@@ -86,7 +86,6 @@ $assets = base_url(). "application/views/layouts/" .$template. "/";
 									<li><?php echo anchor('karyawan/index', 'Informasi Karyawan'); ?></li>
 									<li class="divider"></li>
 									<li><?php echo anchor('karyawan/tambah', 'Tambah Karyawan'); ?></li>
-									<li><a href="#">Report</a></li>
 								</ul>
 							</li>
 							<li><?php echo anchor('cuti/index', 'Cuti'); ?></li>
