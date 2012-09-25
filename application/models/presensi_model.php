@@ -23,7 +23,12 @@ class Presensi_model extends CI_Model {
 		if ($masuk) {
 			$this->keluar($nik, $hari_ini);
 		} else {
-			$this->masuk($nik, $hari_ini);
+			$this->db->select('nik');
+			$query = $this->db->get_where('karyawan', array('nik'=>$nik));
+			if ($query->num_rows() > 0) {
+				$this->masuk($nik, $hari_ini);
+			}
+			return false;
 		}
 	}
 
@@ -33,8 +38,9 @@ class Presensi_model extends CI_Model {
 		$query = $this->db->get_where('presensi', array('karyawan_id'=>$nik, 'tanggal'=>$hari_ini));
 		if ($query->num_rows() > 0) {
 			return true;
+		} else {
+			return false;	
 		}
-		return false;
 	}
 
 	public function masuk($nik, $hari_ini) {
