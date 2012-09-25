@@ -1,91 +1,63 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Presensi_model extends CI_Model { 
+class Presensi_model extends CI_Model {
 
-	public function __construct()
+	public function get_all($hari_ini)
 	{
-	   parent::__construct();
-	   $this->table_name = 'presensi';
-	}
-
-	public function jumlahPresensi()
-	{
-		return $this->db->count_all($this->table_name);
-	}
-
-	public function update_absensi($tanggal, $nik, $keterangan) {
-		$data = array(
-               'tanggal' => $tanggal,
-               'karyawan_id' => $nik,
-               'keterangan' => $keterangan
-            );
-
-		$this->db->where('karyawan_id', $nik);
-		// $this->db->where('tanggal', $tanggal);
-		$this->db->update($this->table_name, $data); 
-	}
-
-	public function listPresensi($limit = array(), $pencarian)
-	{
-
-		$this->db->select('*');
-		$this->db->join('karyawan', 'karyawan.nik = '.$this->table_name.'.karyawan_id');
-		if ($pencarian) {
-			$this->db->like('presensi',$pencarian);
-		}
-
-		if ($limit == null) {
-			$query = $this->db->get($this->table_name);
+		$this->db->select('presensi.id,presensi.tanggal,presensi.karyawan_id,presensi.jam_masuk,presensi.jam_keluar,karyawan.nama_depan,karyawan.nama_belakang,jabatan.nama_jabatan');
+		$this->db->join('karyawan','karyawan.nik = presensi.karyawan_id', 'left');
+		$this->db->join('jabatan', 'jabatan.id = karyawan.jabatan_id');
+		$this->db->where('presensi.tanggal', $hari_ini);
+		$query = $this->db->get('presensi');
+		if ($query->num_rows() > 0) {
+			return $query->result_array();	
 		} else {
-			$query = $this->db->get($this->table_name, $limit['perpage'], $limit['offset']);
+			return null;
 		}
-		$list = array(
-			'result' => $query->result_array(),
-			'count' => $this->db->count_all_results()
-		);
-		return $list;
+		
 	}
 
-	public function getPresensi($kode)
+	public function check_in($nik, $hari_ini)    
 	{
-		$this->db->where('id', $kode);  
-	  	$query = $this->db->get($this->table_name);  
-	  	if($query->num_rows() > 0){  
-	   		return $query->row();  
-	  	} else{  
-	   		return null;  
-	  	}  
+		$masuk = $this->sudah_masuk($nik, $hari_ini);
+		if ($masuk) {
+			$this->keluar($nik, $hari_ini);
+		} else {
+			$this->masuk($nik, $hari_ini);
+		}
 	}
 
-	public function updatePresensi($id, $data) {
-		$this->db->where('id', $id);  
-		$this->db->update($this->table_name, $data);  
-		if($this->db->affected_rows() > 0){  
-			return true;  
-		}  
-		else{  
-			return false;  
-		}  
+	public function sudah_masuk($nik, $hari_ini)
+	{
+		$this->db->select('*');
+		$query = $this->db->get_where('presensi', array('karyawan_id'=>$nik, 'tanggal'=>$hari_ini));
+		if ($query->num_rows() > 0) {
+			return true;
+		}
+		return false;
 	}
 
-	 function newPresensi($data)
-	 {  
-	 	$this->db->insert($this->table_name, $data);  
-	 	if($this->db->affected_rows() > 0){  
-	 		return true;  
-	 	} else {  
-	 		return false;  
-	 	}  
-	 } 
-	function delete_data($id)
-	{  
-		$this->db->where('id', $id);  
-		$this->db->delete($this->table_name);  
-		if($this->db->affected_rows() > 0){  
-			return true;  
-		}  
-		else{  
-			return false;  
-		}      
-	} 
+	public function masuk($nik, $hari_ini) {
+		$time = date('H:i:s');
+		$data = array(
+				'jam_masuk' =>$time,
+				'karyawan_id' => $nik,
+				'tanggal' => $hari_ini
+			);
+		return $this->db->insert('presensi', $data);
+	}
+
+	public function keluar($nik, $hari_ini) {
+		$time = date('H:i:s');
+		$data = array(
+				'jam_keluar' =>$time,
+				'karyawan_id' => $nik,
+				'tanggal' => $hari_ini
+			);
+		return $this->db->update('presensi', $data);
+	}
+
 }
+
+/* End of file presensi_model.php */
+/* Location: ./application/models/presensi_model.php */

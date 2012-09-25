@@ -1,66 +1,57 @@
-<h3>Presensi Karyawan</h3>
+<h3>Absensi Karyawan</h3>
 <hr>
-<?php echo display_flash('message') ?>
-<div class="addition">
-	<form class="form-search pull-left">
-	    <input type="text" class="input-medium search-query">
-	    <button type="submit" class="btn">Search</button>
-	</form>
-	<div class="pull-right">
-		<?php echo anchor('presensi/tambah', 
-			'<i class="icon-plus icon-white"></i> Tambah', 
-			array('class'=>"btn btn-primary")); ?>
-	</div>	
+<div class="addition well">
+	<div class="form-inline">
+		Masukkan NIK : <input name="nik" class="input-medium" id="appendedInputButton" type="text">
+	</div>
 </div>
-<tr>
-
-<?php echo form_open('presensi/submit') ?>
-<input type ="text" name="tanggal" value= "01-08-2012" id="datepicker"></tr>
+<div id="tanggal">Tanggal : <b> <?php echo date('d M Y') ?></b></div>
+<hr>
 <table class="table table-striped table-bordered table-condensed">
 	<tr>
 		<th width="20px">No</th>
-		<th width="300px">NIK</th>
-		<th width="300px">Nama</th>
-		<th width="300px">Hadir</th>
-		<th width="300px">Ijin</th>
-		<th width="300px">Sakit</th>
-		<th width="300px">Alfa</th>
-		<th width="300px">Action</th>
+		<th width="100px">Tanggal</th>
+		<th width="300px">Nama</td>
+		<th width="300px">Jabatan</td>
+		<th width="100px">Jam Masuk</th>
+		<th width="100px">Jam Keluar</th>
 	</tr>
-	<?php $count = 1; ?>
-	<?php foreach ($presensi as $data): ?>
+	<?php $count = 1; if (count($data_presensi) > 0): ?>
+		<?php foreach ($data_presensi as $data): ?>
+			<tr>
+				<td><?php echo $count++; ?></td>
+				<td><?php echo $data['tanggal'] ?></td>
+				<td><?php echo $data['nama_depan'] ?> <?php echo $data['nama_belakang'] ?></td>
+				<td><?php echo $data['nama_jabatan'] ?></td>
+				<td><?php echo $data['jam_masuk'] ?></td>
+				<td><?php echo $data['jam_keluar'] ?></td>
+			</tr>
+		<?php endforeach; $count++; ?>
+	<?php else: ?>
 		<tr>
-			<td><?php echo $count++; ?></td>
-			<td><?php echo $data['nik'] ?></td>
-			<td><?php echo $data['nama_depan']. ' ' .$data['nama_belakang'] ?></td>
-
-			<?php for ($i=1; $i < 5; $i++) { 
-
-				if ($i == $data['keterangan']) {
-					$chk = "checked='checked'";
-				} else {
-					$chk = '';
-				}
-				?>
-				<td><input type="radio" <?php echo $chk ?> name='keterangan[<?php echo $data['nik'] ?>]' value='<?php echo $i ?>'></td>
-			<?php } ?>
-			<td>
-			<?php echo anchor('presensi/delete/'.$data['id'], 'Delete', array('class'=>"btn btn-mini", 'onclick'=> "return confirm('Are you sure you want to delete?')")); ?></td>
+			<td colspan="6"><i>Belum ada data</i></td>
 		</tr>
-
-
-	<?php endforeach ?>
-</table>
-<div class="form-actions">
-			<?php echo form_submit(array('name'=>'submit', 'value'=>'Save changes', 'class'=>'btn btn-primary')); ?>
-			<button class="btn">Cancel</button>
-		</div>
-<?php echo form_close(); ?>
-<div class="footer_table">
-	<!-- <div class="pull-left">Found: <?php echo count ($presensi)?> Presensi </div> -->
-	 <?php echo $this->pagination->create_links(); ?>
-</div>
-<script type="text/javascript">
+	<?php endif ?>
 	
+</table>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		var CI = {'base_url':'<?php echo base_url() ?>'}
+		$("input[name='nik']").focus();
+		$("input[name='nik']").keypress(function(event){
+			var keycode = (event.keyCode ? event.keyCode : event.which);
+			if(keycode == '13'){
+				var nik = $(this).val();
+				$.ajax({
+					url: CI.base_url + 'presensi/check_in',
+					method: 'get',
+					data: {nik: nik},
+					success: function(data){
+						window.location = CI.base_url + "presensi/index";
+					}
+				});
+			}
 
+		});
+	});
 </script>
