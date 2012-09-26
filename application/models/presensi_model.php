@@ -58,9 +58,9 @@ class Presensi_model extends CI_Model {
 		$time = date('H:i:s');
 		$data = array(
 				'jam_keluar' =>$time,
-				'karyawan_id' => $nik,
 				'tanggal' => $hari_ini
 			);
+		$this->db->where('karyawan_id', $nik);
 		return $this->db->update('presensi', $data);
 	}
 
