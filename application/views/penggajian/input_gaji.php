@@ -104,9 +104,6 @@
 						<p class="help-block"><?php echo form_error('total_gaji'); ?></p>
 					</div>
 				</div>
-				<label class="checkbox">
-				  <input type="checkbox" value="" checked>Cetak Nota
-				</label>
 				<div class="form-actions">
 					<?php echo form_submit(array('name'=>'submit', 'value'=>'Simpan', 'class'=>'btn btn-primary')); ?>
 				</div>
@@ -201,13 +198,13 @@
 		        cache :false,  
 		        data :post_data,  
 		        success : function(data) {  
-		            alert("Data berhasil dimasukkan.");  
+		            
 		        },  
 		        error : function() {  
 		            alert("Data gagal dimasukkan.");  
 		        }  
 		    });  
-		    return false;  
+		    // return false;  
 		});  
 	});
 </script>

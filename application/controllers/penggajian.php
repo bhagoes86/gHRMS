@@ -68,10 +68,30 @@ class  Penggajian extends CI_Controller {
 
         $status = $this->gaji->inputGaji($nik, $gapok, $tunjangan, $potongan, $tgl_ambil);
         if ($status) {
-            $this->index();
+            $this->_print_slip($nik, $gapok, $tunjangan, $potongan, $tgl_ambil);
         }
     }
 
+    public function _print_slip($nik, $gapok, $tunjangan, $potongan, $tgl_ambil)
+    {
+        $this->db->select('karyawan.nama_depan,karyawan.nama_belakang,jabatan.nama_jabatan');
+        $this->db->join('jabatan', 'jabatan.id = karyawan.jabatan_id', 'left');
+        $this->db->where('nik', $nik);
+        $query = $this->db->get('karyawan');
+        $karyawan = $query->row_array();
+        $data = array(
+                'nama_karyawan' => $karyawan['nama_depan'].' '.$karyawan['nama_belakang'],
+                'nama_jabatan' => $karyawan['nama_jabatan'],
+                'total_tunjangan' => $tunjangan,
+                'total_potongan' => $potongan,
+                'gapok' => $gapok,
+                'bulan' => date('F', strtotime($tgl_ambil)),
+                'tahun' => date('Y', strtotime($tgl_ambil)),
+                'total_gaji' => $gapok + $tunjangan - $potongan
+
+            );
+        $this->load->view('penggajian/print_slip',$data);
+    }
     
 }
 

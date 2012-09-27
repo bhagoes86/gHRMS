@@ -1,3 +1,14 @@
+<html>
+<head>
+	<title>Rekap Cuti</title>
+	<style type="text/css">
+		body{
+			font-family: tahoma;
+		}
+	</style>
+</head>
+<body>
+
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
     global $template;
     $assets = base_url(). "application/views/layouts/" .$template. "/";
@@ -9,17 +20,17 @@
 </div>
 <hr style="margin-top:20px">
 <h4>Data Cuti</h4>
-<table border="1px" cellspacing="0px" cellpadding="5px">
+<table border="1px" cellspacing="0px" cellpadding="5px" style="font-size:12px">
 	<tr>
 		<th width="20px">No</th>
-		<th width="100px">Kode Cuti</th>
-		<th width="200px">NIK</th>
+		<th width="80px">Kode Cuti</th>
+		<th width="150px">NIK</th>
 		<th width="200px">Nama Karyawan</th>
 		<th width="200px">Jenis Cuti</th>
-		<th width="200px">Tanggal Mulai</th>
-		<th width="200px">Tanggal Akhir</th>
-		<th width="200px">Lama Cuti</th>
-		<th width="200px">Status</th>
+		<th width="100px">Tanggal Mulai</th>
+		<th width="100px">Tanggal Akhir</th>
+		<th width="100px">Lama Cuti</th>
+		<th width="80px">Status</th>
 	</tr>
 	<?php $count = (1+$this->uri->segment(3)); ?>
 	<?php foreach ($cuti as $data): ?>
@@ -37,3 +48,5 @@
 	<?php endforeach ?>
 </table>
 <script type="text/javascript">window.print()</script>
+</body>
+</html>

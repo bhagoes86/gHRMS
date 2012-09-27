@@ -18,14 +18,14 @@
 <table class="table table-striped table-bordered table-condensed">
 	<tr>
 		<th width="20px">No</th>
-		<th width="100px">Kode Cuti</th>
-		<th width="200px">NIK</th>
+		<th width="80px">Kode Cuti</th>
+		<th width="150px">NIK</th>
 		<th width="200px">Nama Karyawan</th>
 		<th width="200px">Jenis Cuti</th>
-		<th width="200px">Tanggal Mulai</th>
-		<th width="200px">Tanggal Akhir</th>
-		<th width="200px">Lama Cuti</th>
-		<th width="200px">Status</th>
+		<th width="100px">Tanggal Mulai</th>
+		<th width="100px">Tanggal Akhir</th>
+		<th width="100px">Lama Cuti</th>
+		<th width="50px">Status</th>
 		<th width="100px">Action</th>
 	</tr>
 	<?php $count = (1+$this->uri->segment(3)); ?>
