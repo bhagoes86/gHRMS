@@ -18,6 +18,7 @@ class Login extends CI_Controller {
     {
     	// load library validation form
     	$this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<div class="alert alert-error">', '</div>');
     	$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
     	$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_check_database');
 

@@ -1,6 +1,7 @@
 <div id="login-form" class="well" style="margin:100px auto;text-align:center;width:300px">
 	<h2>Login Form</h2>
 	<hr>
+	
 	<?php echo validation_errors(); ?>
 	<?php echo form_open('login/verify'); ?>
 		<fieldset>
