@@ -7,6 +7,14 @@ class Home extends CI_Controller {
     	$view = 'home/index';
     	$data = array();
     	gview($view,$data);
+    	$this->check_isvalidated();
+    }
+
+    public function check_isvalidated()
+    {
+        if (!$this->session->userdata('validated')) {
+            redirect('login');
+        }
     }
 
     public function login() {

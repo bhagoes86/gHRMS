@@ -6,6 +6,14 @@ class  status extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('status_model', 'status');
+        $this->check_isvalidated();
+    }
+
+    public function check_isvalidated()
+    {
+        if (!$this->session->userdata('validated')) {
+            redirect('login');
+        }
     }
 
     public function index($offset = 0)

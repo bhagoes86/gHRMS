@@ -4,9 +4,16 @@ class Jenis_cuti extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->check_isvalidated();
 	    $this->load->model('jenis_cuti_model', 'jenis_cuti');
 	}
 
+	public function check_isvalidated()
+    {
+        if (!$this->session->userdata('validated')) {
+            redirect('login');
+        }
+    }
 
 	public function index($offset = 0)
 	{

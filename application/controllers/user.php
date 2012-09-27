@@ -6,7 +6,15 @@ class User extends CI_Controller {
 	{
 		parent::__construct();
 	    $this->load->model('user_model', 'user');
+	    $this->check_isvalidated();
 	}
+
+	public function check_isvalidated()
+    {
+        if (!$this->session->userdata('validated')) {
+            redirect('login');
+        }
+    }
 
 	public function index($offset = 0)
 	{

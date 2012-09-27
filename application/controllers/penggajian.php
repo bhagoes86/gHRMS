@@ -5,7 +5,7 @@ class  Penggajian extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        // $this->check_isvalidated(); 
+        $this->check_isvalidated(); 
         $this->load->model('penggajian_model', 'gaji');
         $this->load->model('penggajian_model', 'gaji_detail');
     }

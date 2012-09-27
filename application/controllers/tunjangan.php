@@ -6,6 +6,14 @@ class  tunjangan extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('tunjangan_model', 'tunjangan');
+        $this->check_isvalidated();
+    }
+
+    public function check_isvalidated()
+    {
+        if (!$this->session->userdata('validated')) {
+            redirect('login');
+        }
     }
 
     public function index($offset = 0)

@@ -5,7 +5,14 @@ class Karyawan extends CI_Controller {
 	function __construct() {
 		parent::__construct();
         $this->load->model('karyawan_model', 'karyawan');
+        $this->check_isvalidated();
 	}
+    public function check_isvalidated()
+    {
+        if (!$this->session->userdata('validated')) {
+            redirect('login');
+        }
+    }
 
     public function index($offset = 0)
     {

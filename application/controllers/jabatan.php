@@ -5,7 +5,14 @@ class jabatan extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        $this->check_isvalidated();
         $this->load->model('jabatan_model', 'jabatan');
+    }
+    public function check_isvalidated()
+    {
+        if (!$this->session->userdata('validated')) {
+            redirect('login');
+        }
     }
 
     public function index($offset = 0)

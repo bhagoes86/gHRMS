@@ -57,6 +57,14 @@ $assets = base_url(). "application/views/layouts/" .$template. "/";
 						<span class="icon-bar"></span>
 					</a>
 					<a class="brand" href="#">HRM System</a>
+					<?php if (!is_logged_in()): ?>
+						<div class="nav-collapse" data-toggle="nav">
+						<ul class="nav pull-right">
+							<li class="divider-vertical"></li>
+							<li><div><?php echo anchor('login', 'Login', array('class'=>"btn btn-danger btn-small")); ?></div></li>
+						</ul>
+					</div>
+					<?php else: ?>
 					<div class="nav-collapse" data-toggle="nav">
 						<ul class="nav">
 							<li class="active"><a href="/">Dashboard</a></li>
@@ -103,24 +111,28 @@ $assets = base_url(). "application/views/layouts/" .$template. "/";
 							<li class="divider-vertical"></li>
 
 							<li>
-								<div>
-									<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
-										<i class="icon-user"></i>
-										Septian
-										<span class="caret"></span>
-									</a>
-									<ul class="dropdown-menu">
-									<!-- <li>
+							<div>
+								<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
+									<i class="icon-user"></i>
+									<?php if (is_logged_in()): ?>
+										<?php echo is_logged_in() ?>
+									<?php endif ?>
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+<!-- 									<li>
 										<a href="#">Profile</a>
-									</li> -->
-									<!-- <li class="divider"></li> -->
+									</li>
+									<li class="divider"></li> -->
 									<li>
 										<?php echo anchor('login/logout', 'Logout'); ?>
 									</li>
 								</ul>
 							</div>
 						</li>
-					</ul>
+						</ul>
+					</div>
+					<?php endif; ?>
 				</div><!--/.nav-collapse -->
 			</div>
 		</div>

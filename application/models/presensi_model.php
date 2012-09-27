@@ -64,6 +64,20 @@ class Presensi_model extends CI_Model {
 		return $this->db->update('presensi', $data);
 	}
 
+	public function get_rekap($dari, $sampai)
+	{
+		$this->db->select('presensi.*, karyawan.nama_depan, karyawan.nama_belakang');
+		$this->db->join('presensi', 'presensi.karyawan_id = karyawan.nik', 'left');
+		$this->db->where('presensi.tanggal >= ', $dari);
+		$this->db->where('presensi.tanggal <=', $sampai);
+		$query = $this->db->get('karyawan');
+		if ($query->num_rows() > 0) {
+			return $query->result_array();
+		} else {
+			return null;
+		}
+	}
+
 }
 
 /* End of file presensi_model.php */
