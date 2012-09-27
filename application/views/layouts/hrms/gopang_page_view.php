@@ -86,6 +86,8 @@ $assets = base_url(). "application/views/layouts/" .$template. "/";
 									<li><?php echo anchor('cabang/index', 'Cabang'); ?></li>
 									<li><?php echo anchor('jabatan/index', 'Jabatan'); ?></li>
 									<li><?php echo anchor('status/index', 'Status Karyawan'); ?></li>
+									<li class="divider"></li>
+									<li><?php echo anchor('user/index', 'Management User'); ?></li>
 								</ul>
 							</li>
 							<li class="dropdown clearfix">
