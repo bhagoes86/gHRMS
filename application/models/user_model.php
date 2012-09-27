@@ -15,7 +15,7 @@ class user_model extends CI_Model {
 
 	public function listUser($limit = array())
 	{
-		$this->db->select('id,username,password,roles_id');
+		$this->db->select('id,username,password');
 		if ($limit == null) {
 			$query = $this->db->get($this->table_name);
 		} else {
