@@ -36,3 +36,4 @@
 		</tr>
 	<?php endforeach ?>
 </table>
+<script type="text/javascript">window.print()</script>
