@@ -31,7 +31,6 @@
 		</div>
 		<div class="form-actions">
 			<?php echo form_submit(array('name'=>'submit', 'value'=>'Save changes', 'class'=>'btn btn-primary')); ?>
-			<button class="btn">Cancel</button>
 		</div>
 	</fieldset>
 <?php echo form_close(); ?>
