@@ -25,7 +25,7 @@ jQuery(document).ready(function($) {
 
 	window.now = new hrms();
 
-	$('input[name="tanggal_lahir"].datepicker').datepicker({format: 'yyyy-mm-dd', startDate: window.now.date})
+	$('input.datepicker').datepicker({format: 'yyyy-mm-dd', startDate: window.now.date})
 			   	.on('changeDate', function(ev){
 				    $(this).datepicker('hide');
 				});

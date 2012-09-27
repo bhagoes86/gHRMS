@@ -21,6 +21,7 @@
 		$no_rekening = '';
 		$status_nikah = '';
 		$gapok = '';
+		$join_date = '';
 		$type = 'create';   
 	} else {  
 		$id = $data_karyawan->id;
@@ -44,6 +45,7 @@
 		$no_rekening = $data_karyawan->no_rekening;
 		$status_nikah = $data_karyawan->status_nikah;
 		$gapok = $data_karyawan->gapok;
+		$join_date = $data_karyawan->join_date;
 		$type = 'update';  
 	}  
 ?>  
@@ -220,6 +222,13 @@
 					<span class="add-on">Rp</span><?php echo form_input(array('name'=>'gapok', 'value'=>$gapok, 'class'=>'input-xlarge')); ?>
 				</div>
 				<p class="help-inline error"><?php echo form_error('gapok'); ?></p>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="textarea">Tanggal Masuk</label>
+			<div class="controls">
+				<?php echo form_input(array('name'=>'join_date', 'value'=>$join_date, 'class'=>'input-medium datepicker')); ?>
+				<p class="help-inline error"><?php echo form_error('join_date'); ?></p>
 			</div>
 		</div>
 		<div class="form-actions">

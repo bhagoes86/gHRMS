@@ -44,6 +44,15 @@ class Karyawan extends CI_Controller {
         gview($view, $data);
     }
 
+    public function print_karyawan()
+    {
+        $karyawan = $this->karyawan->listKaryawan();
+        $data = array(
+            'karyawan' => $karyawan['result']
+            );
+        $this->load->view('karyawan/print_karyawan', $data);
+    }
+
     public function edit()
     {
         // initialize view
@@ -116,7 +125,7 @@ class Karyawan extends CI_Controller {
                 'no_rekening' => $this->input->post('no_rekening'),
                 'status_nikah' => $this->input->post('status_nikah'),
                 'gapok' => $this->input->post('gapok'),
-                'join_date' => date('Y-m-d')
+                'join_date' => $this->input->post('join_date'),
                 );
             $create = $this->karyawan->newKaryawan($data);
             // tampilkan information message
@@ -157,7 +166,8 @@ class Karyawan extends CI_Controller {
                 'gol_darah' => $this->input->post('gol_darah'),
                 'no_rekening' => $this->input->post('no_rekening'),
                 'status_nikah' => $this->input->post('status_nikah'),
-                'gapok' => $this->input->post('gapok')
+                'gapok' => $this->input->post('gapok'),
+                'join_date' => $this->input->post('join_date'),
                 );
             $update = $this->karyawan->updateKaryawan($id,$data);
             // tampilkan information message

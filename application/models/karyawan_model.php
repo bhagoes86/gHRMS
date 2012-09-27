@@ -13,13 +13,13 @@ class Karyawan_Model extends CI_Model {
 		return $this->db->count_all($this->table_name);
 	}
 
-	public function listKaryawan($limit = array(), $pencarian)
+	public function listKaryawan($limit = array(), $pencarian="")
 	{
 		$this->db->select('karyawan.id, 
 			karyawan.nik, karyawan.nama_depan, karyawan.nama_belakang, 
 			departemen.nama_departemen, 
-			jabatan.nama_jabatan, status.nama_status');
-		if ($pencarian) {
+			jabatan.nama_jabatan, status.nama_status, karyawan.join_date');
+		if ($pencarian != "") {
 			
 			$this->db->like('nama_depan',$pencarian);
 			$this->db->or_like('nama_belakang',$pencarian);
