@@ -199,9 +199,6 @@
 		        data :post_data,  
 		        success : function(data) {  
 		            
-		        },  
-		        error : function() {  
-		            alert("Data gagal dimasukkan.");  
 		        }  
 		    });  
 		    // return false;  
