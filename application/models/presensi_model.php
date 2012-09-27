@@ -37,7 +37,7 @@ class Presensi_model extends CI_Model {
 	{
 		$this->db->select('*');
 		$query = $this->db->get_where('presensi', array('karyawan_id'=>$nik, 'tanggal'=>$hari_ini));
-		if ($query->num_rows() > 0) {
+		if (($query->num_rows() > 0) && ($query->num_rows() < 2)) {
 			return true;
 		} else {
 			return false;	
