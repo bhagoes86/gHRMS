@@ -32,7 +32,7 @@ $assets = base_url(). "application/views/layouts/" .$template. "/";
 	<script src="<?php echo $assets ?>bootstrap/assets/js/bootstrap-datepicker.js"></script>
 	<script src="<?php echo $assets ?>js/hrms.js"></script>
 	<style type="text/css">
-	body { padding-top: 60px; padding-bottom: 40px; font-size:12px }
+	body { padding-top: 60px; padding-bottom: 40px; font-size:13px }
 	</style>
 	<link href="<?php echo $assets ?>bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 

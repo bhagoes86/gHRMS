@@ -10,6 +10,9 @@
 		<?php echo anchor('cuti/tambah', 
 			'<i class="icon-plus icon-white"></i> Tambah', 
 			array('class'=>"btn btn-primary")); ?>
+		<?php echo anchor('cuti/print_cuti', 
+			'<i class="icon-print icon-white"></i> Report', 
+			array('class'=>"btn btn-primary")); ?>
 	</div>	
 </div>
 <table class="table table-striped table-bordered table-condensed">
@@ -17,6 +20,7 @@
 		<th width="20px">No</th>
 		<th width="100px">Kode Cuti</th>
 		<th width="200px">NIK</th>
+		<th width="200px">Nama Karyawan</th>
 		<th width="200px">Jenis Cuti</th>
 		<th width="200px">Tanggal Mulai</th>
 		<th width="200px">Tanggal Akhir</th>
@@ -30,6 +34,7 @@
 			<td><?php echo $count++; ?></td>
 			<td><?php echo $data['kd_pcuti'] ?></td>
 			<td><?php echo $data['nik'] ?></td>
+			<td><?php echo $data['nama_depan'] ?> <?php echo $data['nama_belakang'] ?></td>
 			<td><?php echo $data['nama_cuti'] ?></td>
 			<td><?php echo $data['tgl_mulai'] ?></td>
 			<td><?php echo $data['tgl_akhir'] ?></td>

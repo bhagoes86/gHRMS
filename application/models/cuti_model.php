@@ -13,15 +13,16 @@ class Cuti_model extends CI_Model {
 		return $this->db->count_all($this->table_name);
 	}
 
-	public function listCuti($limit = array(), $pencarian)
+	public function listCuti($limit = array(), $pencarian="")
 	{
 
-		$this->db->select('*');
-		if ($pencarian) {
+		$this->db->select('permohonan_cuti.*,jenis_cuti.*,karyawan.nama_depan,karyawan.nama_belakang');
+		if ($pencarian != "") {
 			$this->db->like('nik',$pencarian);
 			$this->db->or_like('kd_pcuti',$pencarian);
 		}
 		$this->db->join('jenis_cuti', 'jenis_cuti.id = '.$this->table_name.'.jenis_cuti_id', 'left');
+		$this->db->join('karyawan', 'karyawan.nik = permohonan_cuti.nik', 'left');
 		if ($limit == null) {
 			$query = $this->db->get($this->table_name);
 		} else {

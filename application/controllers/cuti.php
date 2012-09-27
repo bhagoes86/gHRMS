@@ -50,6 +50,16 @@ class Cuti extends CI_Controller {
 		gview($view, $data);
 	}
 
+	public function print_cuti()
+	{
+		$this->load->helper('oknot');
+		$cuti = $this->cuti->listCuti();
+		$data = array(
+			'cuti' => $cuti['result'],
+			);
+		$this->load->view('cuti/print_cuti', $data);
+	}
+
 	public function edit()
 	{
 		// initialize view
