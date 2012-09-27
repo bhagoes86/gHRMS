@@ -82,7 +82,6 @@ class Presensi extends CI_Controller {
             // } else {
             //     $nik_prev = $nik;
             // }
-            $tableRow
 
         }
         echo json_encode($bulan);
