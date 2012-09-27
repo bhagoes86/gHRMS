@@ -1,4 +1,4 @@
-<h3>Welcome to HRMS System</h3>
+<h3>Welcome to HRM System</h3>
 <hr>
 
 <div style="text-align: center;">
