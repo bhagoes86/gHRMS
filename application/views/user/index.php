@@ -18,7 +18,6 @@
 		<th width="100px">ID</th>
 		<th width="300px">Username</th>
 		<th width="300px">Password</th>
-		<th width="300px">Roles</th>
 		<th width="100px">Action</th>
 	</tr>
 	<?php $count = 1; ?>
@@ -28,7 +27,6 @@
 			<td><?php echo $data['id'] ?></td>
 			<td><?php echo $data['username'] ?></td>
 			<td><?php echo $data['password'] ?></td>
-			<td><?php echo $data['roles_id'] ?></td>
 			<td>
 				<?php echo anchor('user/edit/'.$data['id'], 'Edit', array('class'=>"btn btn-mini")); ?>
 				<?php echo anchor('user/delete/'.$data['id'], 'Delete', array('class'=>"btn btn-mini", 'onclick'=> "return confirm('Anda yakin menghapus data?')")); ?>

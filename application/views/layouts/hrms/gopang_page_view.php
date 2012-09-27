@@ -56,7 +56,7 @@ $assets = base_url(). "application/views/layouts/" .$template. "/";
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
-					<a class="brand" href="#">HRM System</a>
+					<a class="brand" href="/">HRM System</a>
 					<?php if (!is_logged_in()): ?>
 						<div class="nav-collapse" data-toggle="nav">
 						<ul class="nav pull-right">

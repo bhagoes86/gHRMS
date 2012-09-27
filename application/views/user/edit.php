@@ -3,13 +3,11 @@
 		$id = '';
 		$username = '';
 		$password = '';
-		$roles_id = '';
 		$type = 'create';   
 	} else {  
 		$id = $data_user->id;
 		$username = $data_user->username;
-		$password = $data_user->password;
-		$roles_id = $data_user->roles_id;
+		$password = '';
 		$type = 'update';  
 	}  
 ?>  
@@ -28,13 +26,6 @@
 			<label class="control-label" for="input01">Password</label>
 			<div class="controls">
 				<?php echo form_input(array('name'=>'password', 'value'=>$password, 'class'=>'input-xlarge')); ?>
-				<p class="help-block"><?php echo form_error('user'); ?></p>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label" for="input01">Roles</label>
-			<div class="controls">
-				<?php echo form_input(array('name'=>'roles_id', 'value'=>$roles_id, 'class'=>'input-xlarge')); ?>
 				<p class="help-block"><?php echo form_error('user'); ?></p>
 			</div>
 		</div>

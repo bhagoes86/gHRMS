@@ -25,7 +25,7 @@ class Login extends CI_Controller {
     		// jika validasi gagal maka redirect ke form login lagi
     		gview('login/login_view', array());
     	} else {
-    		redirect('agama','refresh');
+    		redirect('/','refresh');
     	}
     }
 

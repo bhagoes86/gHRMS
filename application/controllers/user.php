@@ -6,6 +6,7 @@ class User extends CI_Controller {
 	{
 		parent::__construct();
 	    $this->load->model('user_model', 'user');
+	    $this->load->helper('security');
 	    $this->check_isvalidated();
 	}
 
@@ -55,7 +56,7 @@ class User extends CI_Controller {
 	 	$result = $this->user->getUser($kode);	
 	 	// print_r($result);exit;
 	 	if ($result == null) 
-	 		redirect('username,password,roles_id');
+	 		redirect('username,password');
 	 	else 
 	 		$data['data_user'] = $result;  	
 	 	gview($view, $data);
@@ -73,7 +74,7 @@ class User extends CI_Controller {
 	 	$id = $this->security->xss_clean($this->uri->segment(3));
 	 	$result = $this->user->getUser($id);
 	 	if ($result == null) {
-	 		redirect('username,password,roles_id');
+	 		redirect('username,password');
 	 	} else { 
 	 		$delete = $this->user->delete_data($id);
 	 		if ($delete) set_flash('message', 'alert-success', 'Users deleted', 'user');
@@ -87,7 +88,6 @@ class User extends CI_Controller {
 	 	$this->form_validation->set_error_delimiters('<div id="error">', '</div>');
 	 	$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
 	 	$this->form_validation->set_rules('password', 'password', 'trim|xss_clean');
-	 	$this->form_validation->set_rules('roles_id', 'roles_id', 'trim|xss_clean');
 
 	  	// jika tidak lolos validasi
 	 	if ($this->form_validation->run() == FALSE){
@@ -97,8 +97,7 @@ class User extends CI_Controller {
 	 	} else {
 	 		$data = array(
 	 			'username' => $this->input->post('username'),
-	 			'password' => $this->input->post('password'),
-	 			'roles_id' => $this->input->post('roles_id'),  
+	 			'password' => do_hash($this->input->post('password'),'md5'),
 	 			);
 	 		$create = $this->user->newUser($data);
 	   		// tampilkan information message
@@ -113,7 +112,6 @@ class User extends CI_Controller {
 	 	$this->form_validation->set_error_delimiters('<div id="error">', '</div>');
 	 	$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
 	 	$this->form_validation->set_rules('password', 'password', 'trim|xss_clean');
-	 	$this->form_validation->set_rules('roles_id', 'roles_id', 'trim|xss_clean');
 
 	  	// jika tidak lolos validasi
 	 	if ($this->form_validation->run() == FALSE){
@@ -124,13 +122,12 @@ class User extends CI_Controller {
 	 		$id = $this->input->post('id');
 	 		$data = array(
 	 			'username' => $this->input->post('username'),
-	 			'password' => $this->input->post('password'),
-	 			'roles_id' => $this->input->post('roles_id'),  
+	 			'password' => do_hash($this->input->post('password'),'md5'),
 	 			);
 	 		$update = $this->user->updateuser($id,$data);
 	   		// tampilkan information message
-	 		if ($update) set_flash('message', 'alert-success', 'Users updated', 'agama');
-	 		else set_flash('message', 'alert-error', 'Failed to update data!', 'agama');
+	 		if ($update) set_flash('message', 'alert-success', 'Users updated', 'user');
+	 		else set_flash('message', 'alert-error', 'Failed to update data!', 'user');
 	 	}
 	 }
 
