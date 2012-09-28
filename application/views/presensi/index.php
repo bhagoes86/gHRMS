@@ -5,7 +5,12 @@
 		Masukkan NIK : <input name="nik" class="input-medium" id="appendedInputButton" type="text">
 	</div>
 </div>
-<div id="tanggal">Tanggal : <b> <?php echo date('d M Y') ?></b></div>
+<div id="tanggal">Tanggal : <b> <?php echo date('d M Y') ?></b><div class="pull-right">
+		<?php echo anchor('presensi/rekap', 
+			'<i class="icon-list icon-white"></i> Rekap', 
+			array('class'=>"btn btn-primary")); ?>
+	</div>	</div>
+
 <hr>
 <table class="table table-striped table-bordered table-condensed">
 	<tr>

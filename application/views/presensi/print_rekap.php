@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Print rekap</title>
+	<title>Print Rekap</title>
 	<style type="text/css">
 		body {
 			font-size:10px;
@@ -15,7 +15,7 @@
     $assets = base_url(). "application/views/layouts/" .$template. "/";
 ?>
 <div id="header" style="margin-bottom:5px">
-		<img src="<?php echo $assets ?>img/logo-mariza.jpg" alt="" style="float:left;width:50px;height:50px;margin-right:10px">
+		<img src="<?php echo $assets ?>img/logo-mariza.jpg" alt="" style="float:left;width:40px;height:40px;margin-right:10px">
 		<h3 style="margin:0px;padding:0px">PT.Marizarasa Sarimurni</h3>
 		<p style="margin:0px;padding:0px">Jl. Raya Rangkas Bitung KM 8 Serang</p>
 </div>
@@ -35,14 +35,10 @@
 	<tr>
 		<th width="20px">No</th>
 		<th width="80px">NIK</th>
-		<th width="100px">Nama</td>
-		<?php 
-			while (strtotime($dari_save) <= strtotime($sampai_save)) {
-				echo "<th width='50px'>$dari_save</th>";
-				$dari_save = date ("Y-m-d", strtotime("+1 day", strtotime($dari_save)));
-			}
-
-		 ?>
+		<th width="100px">Nama</th>
+		<th width="100px">Tanggal</th>
+		<th width="100px">Jam Masuk</th>
+		<th width="100px">Jam Keluar</th>
 	</tr>
 
 	<?php $count = 1; if (count($data_presensi) > 0): ?>
@@ -51,17 +47,9 @@
 			<td><?php echo $count++ ?></td>
 			<td><?php echo $presensi['karyawan_id'] ?></td>
 			<td><?php echo $presensi['nama_depan'].' '.$presensi['nama_belakang'] ?></td>
-			<?php 
-				while (strtotime($dari_save2) <= strtotime($sampai_save2)) {
-					if ($presensi['tanggal'] == $dari_save2) {
-						echo "<td>".$presensi['jam_masuk'].' '.$presensi['jam_keluar']."</td>";
-					} else {
-						echo "<td></td>";
-					}
-					$dari_save2 = date ("Y-m-d", strtotime("+1 day", strtotime($dari_save2)));
-				}
-
-			 ?>
+			<td><?php echo $presensi['tanggal']; ?></td>
+			<td><?php echo $presensi['jam_masuk']; ?></td>
+			<td><?php echo $presensi['jam_keluar']; ?></td>
 		</tr>
 		<?php endforeach ?>
 	<?php else: ?>
